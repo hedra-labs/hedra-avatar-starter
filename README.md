@@ -34,7 +34,7 @@ Before you begin, you'll need to set up API keys for the following services. Let
 
 ### 3. OpenAI API Access
 
-1. Go to [OpenAI](https://platform.openai.com/) and follow instructions for generating an API key
+1. Go to [OpenAI](https://platform.openai.com/) and follow instructions for generating an API key ([must be linked to a paid account]([url](https://openai.com/index/introducing-the-realtime-api/?utm_source=chatgpt.com)))
 2. Paste your key into the same `.env` file:
 ```env
    OPENAI_API_KEY=<your_openai_api_key>
