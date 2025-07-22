@@ -1,5 +1,5 @@
 {
-    "name": "create-hedra-avatar",
+    "name": "@hedra/create-hedra-avatar",
     "version": "1.0.0",
     "description": "Scaffolding for a LiveKit + Hedra Realtime Avatar app with a Python backend and React frontend",
     "bin": {
@@ -18,7 +18,7 @@
         "video-agent",
         "voice-assistant"
     ],
-    "author": "Surya Duggirala",
+    "author": "Hedra Labs",
     "scripts": {
         "build": "npx esbuild create.js --bundle --platform=node --outfile=dist/create.cjs",
         "deploy": "npm publish"
