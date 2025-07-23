@@ -63,11 +63,25 @@ async function main() {
   // Install dependencies
   console.log('\nInstalling dependencies. This might take a minute...');
   console.log('\nInstalling frontend dependencies...');
-  execSync('pnpm install', { cwd: path.join(targetDir, 'frontend'), stdio: 'inherit' });
+  try {
+    execSync('pnpm install', { cwd: path.join(targetDir, 'frontend'), stdio: 'inherit' });
+  } catch (error) {
+    console.error('Error installing frontend (Node) dependencies:');
+    console.error(error.message);
+    throw error;
+  }
   
   console.log('\nInstalling backend dependencies...');
-  execSync('pip install -r requirements.txt', { cwd: path.join(targetDir, 'backend'), stdio: 'inherit' });
-  
+  const backendCtx = { cwd: path.join(targetDir, 'backend'), stdio: 'inherit' }
+  try {
+    execSync('uv venv --python 3.13', backendCtx);
+    execSync('source ./.venv/bin/activate', backendCtx);
+    execSync('uv pip install -r requirements.txt', backendCtx);
+  } catch (error) {
+    console.error('Error installing backend (Python) dependencies:');
+    console.error(error.message);
+    throw error;
+  }
 
   // Done
   console.log('\n✅ Success! Your Hedra Avatar app is ready.\n');
@@ -75,7 +89,7 @@ async function main() {
   cd ${projectName}
   
   To start the frontend: npm run start-app
-  To start the backend: npm run start-agent # in a new terminal
+  To start the backend: npm run start-agent (in a new terminal)
 
   Your app will be available at http://localhost:3000 once both frontend and backend are running.
 
